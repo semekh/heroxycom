@@ -18,6 +18,8 @@ class ClientProxyRequest(proxy.ProxyRequest):
         if 'host' not in upstream_headers:
             upstream_headers['host'] = host
         headers = {'host': config.SERVER_HOST, 'uri': self.uri}
+        if 'content-length' in upstream_headers:
+            headers['content-length'] = upstream_headers['content-length']
         for x in upstream_headers:
             headers[config.HEADER_PREFIX + x] = upstream_headers[x]
         self.content.seek(0, 0)
