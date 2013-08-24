@@ -21,7 +21,7 @@ It is already deployed on `heroxycom.herokuapp.com`, please use it for testing p
 
 TODO
 ----
-* It currently supports HTTP only. Support for other protocols (FTP, SSH, SOCKS, Websocket, etc.) may be added whenever I get some spare time -- or dive in the code and pull-requests are more than welcome.
+* It currently supports HTTP only. Support for other protocols (HTTPS, FTP, SSH, SOCKS, Websocket, etc.) may be added whenever I get some spare time -- or dive in the code and pull-requests are more than welcome.
 * It does not encrypt data, and may thus be tracked easily.
 
 The name
