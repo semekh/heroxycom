@@ -1,4 +1,5 @@
 #!/bin/env python2
+import base64
 from twisted.internet import reactor
 from twisted.web import proxy, http
 import urlparse
@@ -12,9 +13,6 @@ class ClientProxyRequest(proxy.ProxyRequest):
         host = parsed[1]
         if ':' in host:
             host, port = host.split(':')
-        rest = urlparse.urlunparse(('', '') + parsed[2:])
-        if not rest:
-            rest += '/'
         class_ = self.protocols[protocol]
         upstream_headers = self.getAllHeaders().copy()
         if 'host' not in upstream_headers:
@@ -24,7 +22,8 @@ class ClientProxyRequest(proxy.ProxyRequest):
             headers[config.HEADER_PREFIX + x] = upstream_headers[x]
         self.content.seek(0, 0)
         s = self.content.read()
-        clientFactory = class_(self.method, rest, self.clientproto, headers, s, self)
+        clientFactory = class_(self.method, '/' + base64.urlsafe_b64encode(self.uri), self.clientproto, headers, s,
+                               self)
         self.reactor.connectTCP(config.SERVER_HOST, int(config.DEFAULT_SERVER_PORT), clientFactory)
 
 
