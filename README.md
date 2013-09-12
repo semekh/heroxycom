@@ -1,6 +1,6 @@
 heroxycom
 =========
-Heroxycom is another HTTP proxy, (currently) aiming to be easily deploy-able on Heroku free plans, thus providing an accessible solution everywhere.
+Heroxycom is yet another HTTP proxy, (currently) aiming to be easily deploy-able on Heroku free plans, thus providing an accessible solution everywhere.
 
 Requirements
 ------------
